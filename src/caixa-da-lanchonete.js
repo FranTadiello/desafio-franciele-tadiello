@@ -41,11 +41,9 @@ class CaixaDaLanchonete {
         })
 
         produtosCardapio.forEach(produto => {
-            if(produto.principal){
-                if(!nomeDosItens.includes(produto.principal)){
+            if(produto.principal && !nomeDosItens.includes(produto.principal)){
                     throw new Error("Erro de falta de item principal");  
                 }
-            }
         })
 
         return somaValores
@@ -60,18 +58,16 @@ class CaixaDaLanchonete {
         try {
             valorBruto = this.calcularValorDosItens(itens)
             taxa = this.calcularTaxa(metodoDePagamento)
-        } catch (error) {
-            if(error.message === "Erro de quantidade"){
-                return 'Quantidade inválida!'
-            }
-            if(error.message === "Erro de entrada de itens"){
-                return 'Item inválido!'
-            }
-            if(error.message === "Erro de metodo de pagamento"){
-                return 'Forma de pagamento inválida!'
-            }
-            if(error.message === "Erro de falta de item principal"){
-                return 'Item extra não pode ser pedido sem o principal'
+        } catch(error) {
+            switch(error.message) {
+                case "Erro de quantidade":
+                    return "Quantidade inválida!"
+                case "Erro de entrada de itens":
+                    return "Item inválido!"
+                case "Erro de metodo de pagamento":
+                    return "Forma de pagamento inválida!"
+                case "Erro de falta de item principal":
+                    return "Item extra não pode ser pedido sem o principal"
             }
         }
         
