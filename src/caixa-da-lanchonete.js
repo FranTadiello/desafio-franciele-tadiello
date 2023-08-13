@@ -20,18 +20,25 @@ class CaixaDaLanchonete {
             item = item.split(",")
             const produto = item[0]
             const qtd = item[1]
+            if(qtd == 0){
+                throw new Error("Erro de quantidade");
+            }
             somaValores += cardapio[produto].valor*qtd 
         })
         return somaValores
     }
     calcularValorDaCompra(metodoDePagamento, itens) {
-
+        let valorBruto
         if(itens.length === 0){
             return "Não há itens no carrinho de compra!"
         }
+        try {
+            valorBruto = this.calcularValorDosItens(itens)    
+        } catch (error) {
+            return 'Quantidade inválida!'
+        }
 
         const taxa = this.calcularTaxa(metodoDePagamento)
-        const valorBruto = this.calcularValorDosItens(itens)
         return `R$ ${((valorBruto*taxa).toFixed(2)).replace(".",",")}`;
     }
 
