@@ -5,7 +5,8 @@ const cardapio = {
     },
     chantily: { 
         descricao: 'Chantily (extra do Café)', 
-        valor: 1.50 
+        valor: 1.50,
+        principal: 'cafe' 
     },
     suco: { 
         descricao: 'Suco Natural', 
@@ -17,7 +18,8 @@ const cardapio = {
     },
     queijo: { 
         descricao: 'Queijo (extra do Sanduíche)', 
-        valor: 2.00 
+        valor: 2.00,
+        principal: 'sanduiche' 
     },
     salgado: { 
         descricao: 'Salgado', 
